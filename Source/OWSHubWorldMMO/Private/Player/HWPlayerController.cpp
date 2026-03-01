@@ -70,7 +70,7 @@ AHWPlayerController::AHWPlayerController()
 void AHWPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
-
+	SetReplicates(true);
 }
 
 void AHWPlayerController::OnPossess(APawn* InPawn)
@@ -194,6 +194,7 @@ void AHWPlayerController::PartialInitializationComplete(FString InitializationPa
 	}
 
 	//Cascading Events
+	//There is where we can kick of other initialization steps that require a previous setup as a dependency
 
 	//Are all the parts complete?
 	for (auto& InitializationPart : InitializationParts)
@@ -462,6 +463,7 @@ void AHWPlayerController::GetLifetimeReplicatedProps(TArray< FLifetimeProperty >
 	Params.Condition = COND_OwnerOnly;
 
 	DOREPLIFETIME_WITH_PARAMS_FAST(AHWPlayerController, SupplyPodsOpened, Params);
+	//DOREPLIFETIME(AHWPlayerController, SupplyPodsOpened);
 }
 
 

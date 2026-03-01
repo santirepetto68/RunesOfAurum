@@ -54,9 +54,6 @@ public:
 		float ServerTravelRY;
 		float ServerTravelRZ;
 
-	FVector LastCharacterLocation;
-	FRotator LastCharacterRotation;
-
 	UPROPERTY()
 		TMap<FString, int32> LocalMeshItemsMap;
 
@@ -130,9 +127,6 @@ public:
 	void OnSaveAllPlayerDataResponseReceived(FHttpRequestPtr Request, FHttpResponsePtr Response, bool bWasSuccessful);
 
 	void PawnLeavingGame();
-
-	//bool InputKey(FKey Key, EInputEvent EventType, float AmountDepressed, bool bGamepad) override;
-	bool InputAxis(FKey Key, float Delta, float DeltaTime, int32 NumSamples, bool bGamepad) override;
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Save")
 		void NotifyPawnLeavingGame(const AOWSCharacter* RPGCharacter);

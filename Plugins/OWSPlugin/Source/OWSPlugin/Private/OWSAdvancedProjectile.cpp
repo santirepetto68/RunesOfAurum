@@ -63,7 +63,7 @@ AOWSAdvancedProjectile::AOWSAdvancedProjectile(const class FObjectInitializer& O
 	ProjectileMovement->OnProjectileStop.AddDynamic(this, &AOWSAdvancedProjectile::OnStop);
 	//ProjectileMovement->Collsion
 
-	bReplicates = true;
+	//bReplicates = true;
 	bNetTemporary = true;
 
 	SetReplicatingMovement(false);
@@ -75,7 +75,7 @@ AOWSAdvancedProjectile::AOWSAdvancedProjectile(const class FObjectInitializer& O
 	bHasSpawnedFully = false;
 
 	NetPriority = 2.f;
-	MinNetUpdateFrequency = 100.0f;
+	SetMinNetUpdateFrequency(100.0f);
 }
 
 void AOWSAdvancedProjectile::PreInitializeComponents()
@@ -155,6 +155,7 @@ void AOWSAdvancedProjectile::BeginPlay()
 	}
 
 	Super::BeginPlay();
+	SetReplicates(true);
 
 	bHasSpawnedFully = true;
 	if (GetLocalRole() == ROLE_Authority)
